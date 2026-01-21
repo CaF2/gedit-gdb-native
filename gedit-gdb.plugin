@@ -1,0 +1,9 @@
+[Plugin]
+Module=gedit-gdb
+IAge=3
+Name=Gedit gdb
+Description=Debug code in gedit
+Authors=Florian Evaldsson <florian.evaldsson@telia.com>
+Copyright=Copyright @ 2025 Florian Evaldsson
+Version=48.1
+

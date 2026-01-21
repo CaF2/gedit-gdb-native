@@ -1,0 +1,5 @@
+testprog
+*.d
+*.o
+*.so
+
