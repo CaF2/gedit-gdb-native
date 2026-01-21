@@ -30,7 +30,7 @@ OBJS = $(SRCS:.c=.c.o)
 
 PKG_CONF = gedit libgedit-tepl-6
 
-CFLAGS = $(if $(PKG_CONF),$(shell pkg-config --cflags $(PKG_CONF))) -g -fPIC -Wall
+CFLAGS = $(if $(PKG_CONF),$(shell pkg-config --cflags $(PKG_CONF))) -g -fPIC -Wall -std=gnu2x
 CFLAGS += -MMD -MP
 
 LDFLAGS = $(if $(PKG_CONF),$(shell pkg-config --libs $(PKG_CONF))) -shared

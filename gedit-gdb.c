@@ -238,27 +238,32 @@ static void gdb_connect_to(GeditGdbPlugin *self, const char *const location)
 	}
 }
 
+static void _on_default_btn(GtkButton *btn, GtkWidget *entry)
+{
+	gtk_entry_set_text(GTK_ENTRY(entry),"localhost:1234");
+}
+
 static void on_connect_clicked(GtkButton *btn, GeditGdbPlugin *self)
 {
-	GtkWidget *dialog;
-	GtkWidget *content_area;
-	GtkWidget *entry;
-	GtkWidget *label;
-
 	// Skapa en dialog
-	dialog = gtk_dialog_new_with_buttons("Connection details", GTK_WINDOW(self->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+	GtkWidget *dialog = gtk_dialog_new_with_buttons("Connection details", GTK_WINDOW(self->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                     "_Cancel", GTK_RESPONSE_CANCEL, "_Connect", GTK_RESPONSE_OK, NULL);
 
-	content_area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+	GtkWidget *content_area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
 	gtk_box_set_spacing(GTK_BOX(content_area), 10);
 	gtk_container_set_border_width(GTK_CONTAINER(content_area), 10);
 
-	label = gtk_label_new("Please define gdbserver, like localhost:1234");
+	GtkWidget *default_btn = gtk_button_new_with_label("localhost:1234");
+	gtk_container_add(GTK_CONTAINER(content_area), default_btn);
+
+	GtkWidget *label = gtk_label_new("Please define gdbserver, like localhost:1234");
 	gtk_container_add(GTK_CONTAINER(content_area), label);
 
-	entry = gtk_entry_new();
+	GtkWidget *entry = gtk_entry_new();
 	gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE); // Gör att Enter-tangenten trycker på OK
 	gtk_container_add(GTK_CONTAINER(content_area), entry);
+	
+	g_signal_connect(default_btn, "clicked", G_CALLBACK(_on_default_btn), entry);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
 	gtk_widget_show_all(dialog);
