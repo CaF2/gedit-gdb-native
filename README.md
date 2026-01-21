@@ -1,6 +1,6 @@
 # Code comment
 
-Inspired on the original code comment plugin for gedit, but rewritten for C.
+A gedit gdb plugin. Uses the side panel.
 
 # Installation
 
@@ -8,8 +8,8 @@ Just follow these steps:
 
 ````
 cd ~/.local/share/gedit/plugins
-git clone https://github.com/CaF2/gedit-code-comment-native.git
-cd gedit-code-comment-native
+git clone https://github.com/CaF2/gedit-gdb-native.git
+cd gedit-gdb-native
 make
 ````
 
